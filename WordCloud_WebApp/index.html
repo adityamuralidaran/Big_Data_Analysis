@@ -1,0 +1,55 @@
+<html xmlns="html">
+    <head>
+        <title>Visualization Word Cloud</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="medley.css"/>
+    </head>
+    <body>
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <h1 class="navbar-brand" >Word Cloud</h1>
+    </nav>
+    <br/>
+    <main role="main" class="container">
+        <div class="jumbotron">
+          <center><h4><i>Generates Word Cloud Using Word Co-Occurence</i><h4></center>
+          <form class="form-signin">
+          <h4 for="DataFrom">Word Source:</h4>
+            <input type="radio" class="form-check-input" name="DataFrom" value="News" onclick = "populate()" checked> New York Times<br/>
+            <input type="radio" class="form-check-input" name="DataFrom" value="Twitter" onclick = "populate()"> Twitter <br><br>
+
+
+              <h4 class="form-signin-heading">Please Select A Word: </h2>
+
+              <select class="form-control" id="sel1" >
+
+              </select>
+              <br/>
+              <button class="btn btn-lg btn-primary btn-block" type="button" onclick="generate_wordcloud()">Generate Word Cloud</button>
+            </form>
+            <center><div id="word-cloud"></div></center>
+        </div>
+      </main>
+        <!--
+        <div class="container">
+            <h3>Top Scorers</h3>
+            <form>
+              <label><input type="radio" name="mode" value="size"/> Goals</label>
+              <label><input type="radio" name="mode" value="count" checked="checked"/> Players</label>
+            </form>
+            <div id="top-scorers"></div>
+        </div>
+
+
+        <div class="container">
+            <h3>2014 World Cup Top 16</h3>
+            <div id="top-162z"></div>
+        </div>
+        -->
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <!--<script type="text/javascript" src="/nav.js"></script>-->
+        <script type="text/javascript" src="d3.layout.cloud.js"></script>
+        <script type="text/javascript" src="medley.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </body>
+</html>
