@@ -1,0 +1,86 @@
+			<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<script src="/d3.v3.min.js"></script>
+  	<script src="/dimple.v2.1.2.min.js"></script>
+    <style>
+    body {
+      margin: 50px;
+    }
+    </style>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+ </head>
+ <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <h1 class="navbar-brand" >Word Count</h1>
+    </nav>
+		<br/>
+    <main role="main" class="container">
+ 	<div class="jumbotron">
+		<center><h4><i>Visualizes The Count Of Words</i><h4></center>
+		<form class="form-signin">
+
+			<h4>Word Source: </h4>
+			<input type="radio" class="form-check-input" name="selection" value="news" id="news"> New York Times	<br>
+	  	<input type="radio" class="form-check-input" name="selection" value="twitter" id="twitter"> Twitter<br><br>
+
+			<h4>Number of Words: </h4>
+			<input type="number" class="form-control" name="enter" id="count">
+			<span><i>*Maximum 50 words</i><span>
+
+	  	<br/><br/>
+	    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="display()"> Visualize</button>
+		</form>
+
+		<center><div id="chartContainer10"></div></center>
+		<script type="text/javascript">
+
+		var count;
+   		function onload()
+   		{
+        count = document.getElementById('count');
+    	}
+    	function display()
+    	{
+    		var checked_doc;
+    		if (document.getElementById('news').checked)
+    		{
+ 		 		checked_doc = "News_GraphWord.csv";
+			}
+			else if (document.getElementById('twitter').checked)
+			{
+				checked_doc = "Twitter_GraphWord.csv";
+			}
+			else
+			{
+				alert("Select a Source!");
+			}
+    		document.getElementByID
+    		document.getElementById('chartContainer10').innerHTML="";
+    		count = document.getElementById('count').value;
+    		if(count.trim() == '')
+    		{
+    			alert("Enter a count!");
+    		}
+    		else
+    		{
+			var svg10 = dimple.newSvg("#chartContainer10", 590, 400);
+			d3.csv(checked_doc, function (data) {
+			var data1=data.splice(0,count)
+			var myChart = new dimple.chart(svg10, data1);
+			  myChart.setBounds(60, 45, 510, 315)
+			  myChart.addCategoryAxis("x", "Word");
+			  myChart.addMeasureAxis("y", "Count");
+			  myChart.addSeries("Word Count", dimple.plot.bar);
+			  myChart.addLegend(200, 10, 380, 20, "right");
+			  myChart.draw();
+			});
+			}
+		}
+		</script>
+ 		</div>
+	</main>
+ </body>
+ </html>
